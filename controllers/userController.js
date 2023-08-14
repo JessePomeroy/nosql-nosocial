@@ -1,4 +1,4 @@
-const { User } = requre('../models');
+const { User } = require('../models');
 
 const userController = {
     getUsers(req, res) {
