@@ -1,11 +1,15 @@
 const { Thought, User, Reaction } = require('../models');
+// import models
 const { Types } = require('mongoose');
 
 const thoughtController = {
     async getThoughts(req, res) {
+        // get all thoughts
         try {
             const thought = await Thought.findOne().sort({ createdAt: -1 });
+            // find latest thought
             res.json(thought);
+            // return thought
         } catch (err) {
             res.status(500).json(err);
         };
@@ -14,6 +18,7 @@ const thoughtController = {
     async getSingleThought(req, res) {
         try {
             const thought = await Thought.findOne({ _id: req.params.thoughtId });
+            // find thought by id
             if (!thought) {
                 res.status(404).json({ message: 'head(id) empty, no thoughts' });
             } else {
@@ -60,11 +65,13 @@ const thoughtController = {
     async addReaction(req, res) {
         try {
             const thought = await Thought.findOneAndUpdate(
+                // find thought and update reactions array
                 { _id: req.params.thoughtId },
                 { $addToSet: { reactions: req.body } },
                 { runValidators: true, new: true }
             );
             thought ? res.json(thought) : res.status(404).json({ message: notFound });
+            // check if thought exists
         } catch (e) {
             res.status(500).json(e);
         }
@@ -74,12 +81,14 @@ const thoughtController = {
     async removeReaction(req, res) {
         try {
             const thought = await Thought.findOneAndUpdate(
+                // find thought and remove reaction from array
                 { _id: req.params.thoughtId },
                 { $pull: { reactions: { reactionId: req.params.reactionId } } },
                 { runValidators: true, new: true }
             );
 
             thought ? res.json(thought) : res.status(404).json({ message: error });
+            // check if thought exists
         } catch (err) {
             res.status(500).json(err);
         }
