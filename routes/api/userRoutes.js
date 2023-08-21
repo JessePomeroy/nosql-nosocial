@@ -2,7 +2,7 @@ const router = require('express').Router();
 // import express router
 
 const {
-    // user controller methods imported from thoughtController
+    // user controller methods imported from userController
     getUsers,
     getSingleUser,
     createUser,
