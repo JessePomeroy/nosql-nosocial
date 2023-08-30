@@ -38,7 +38,7 @@ the server will listen on port 3001 and then you can demo the routes using insom
 https://github.com/JessePomeroy/nosql-nosocial
 
 >click the picture for link to video
-[![Demo Scrot](https://github.com/)]
+[![Demo Scrot](https://youtu.be/BLIl2egJO6E)](https://github.com/)
 
 ## Credits
 
